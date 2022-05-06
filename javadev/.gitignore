@@ -95,3 +95,15 @@ hs_err_pid*
 replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java
+/bike.png
+/copy.txt
+/abc.txt
+/sample2.txt
+/sample.txt
+/bike2.png
+/bike3.png
+/sample3.txt
+/print.txt
+/*.txt
+/*.png
+/*.jpg
