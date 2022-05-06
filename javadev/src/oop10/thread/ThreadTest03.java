@@ -2,6 +2,7 @@ package oop10.thread;
 
 public class ThreadTest03 implements Runnable{
 	public static void main(String[] args){
+		//Runnable
 		ThreadTest03 r = new  ThreadTest03();
 		Thread t = new Thread(r);
 		t.start();
