@@ -10,3 +10,4 @@ CREATE TABLE m1board(
 
 CREATE SEQUENCE m1board_seq	NOCACHE;
 
+SELECT * FROM m1board;
