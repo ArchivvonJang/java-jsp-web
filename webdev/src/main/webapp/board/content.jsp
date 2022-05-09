@@ -1,0 +1,63 @@
+<%@page import="board.model.BoardDto"%>
+<%@page import="board.model.BoardDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
+	Long no = Long.parseLong(request.getParameter("no"));
+	BoardDao boardDao = BoardDao.getInstance();
+	//조회수 증가
+	boolean result = boardDao.updateReadcount(no);
+	//조회수가 제대로 증가하지 않으면 게시판도 볼 수 없다.
+	if(!result){
+%>	
+	<script>
+		alert("해당하는 글이 존재하지 않습니다.");
+		location.href="list.jsp";
+	</script>	
+	
+<% 	
+		return; //서비스종료
+	}
+	//게시판보기
+	BoardDto boardDto = boardDao.getBoardView(no);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Content</title>
+<link rel="stylesheet" href="../css/board.css" type="text/css"/>
+</head>
+<body>
+	<table width="600">
+		<caption>글 상세보기</caption>
+		<tr>
+			<th>글번호</th>
+			<td><%=boardDto.getNo() %></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td><%=boardDto.getTitle() %></td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><%=boardDto.getName() %></td>
+		</tr>
+		<tr>
+			<th>조회수</th>
+			<td><%=boardDto.getReadcount() %></td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td><%=boardDto.getWriteday() %></td>
+		</tr>				
+		<tr>
+			<th>내용</th>
+			<td><%=boardDto.getContent() %></td>
+		</tr>					
+	</table>
+	<a href="list.jsp">[리스트]</a>
+	<a href="update.jsp?no=<%=boardDto.getNo()%>">[수정]</a>
+	<a href="delete.jsp?no=<%=boardDto.getNo()%>">[삭제]</a>
+</body>
+</html>

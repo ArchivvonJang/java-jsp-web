@@ -1,9 +1,17 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="board.model.BoardDao"%>
+<%@page import="board.model.BoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	//list 목록 호출
+	BoardDao boardDao = BoardDao.getInstance();
+	//list와 insert가 같은 객체를 사용하고 있는지 확인 
+	System.out.println("boardDao hashcode : " + boardDao.hashCode());
+	List<BoardDto> list = boardDao.getBoardList();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,50 +29,15 @@
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
-<%
-	Connection cn = null;
-	PreparedStatement ps = null;
-	ResultSet rs = null; //결과데이터를 받아오는 객체참조변수
-	
-	String sql = "SELECT no, title, name, to_char(writeday, 'YYYY-MM-DD') as writeday, readcount " +
-					"FROM m1board " +
-					"ORDER BY no DESC ";
-	
-	try{
-		Class.forName("oracle.jdbc.OracleDriver");
-		cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe" ,"oraclejava", "oraclejava");
-		
-		//conncetion 기반으로 ps를 얻어온다.
-		ps = cn.prepareStatement(sql);
-		//select 데이터 조회 -> executeQuery()
-		ps.executeQuery(sql);
-		//query를 rs로 받는다.
-		rs = ps.executeQuery();
-		//더이상 조회되는 레코드가 없을 때까지 반복
-		while(rs.next()){
-			//출력
-%>
-			<tr>
-				<td><%=rs.getLong("no") %>     		</td>
-				<td><%=rs.getString("title") %>		</td>
-				<td><%=rs.getString("name") %>		</td>
-				<td><%=rs.getString("writeday") %>	</td>
-				<td align="right"><%=rs.getInt("readcount") %></td>
-			</tr>
-<%
-	
-			
-		}
-		
-	}catch(Exception e){
-		e.printStackTrace();
-	}finally{
-		  if(rs!=null) try{ps.close();} catch(Exception e){}
-		  if(ps!=null) try{ps.close();} catch(Exception e){}
-		  if(cn!=null) try{cn.close();} catch(Exception e){}
-	}
-
-%>		
+		<%for(BoardDto dto : list){ %>
+		<tr>
+			<td><%=dto.getNo() %>     	</td>
+			<td><a href="content.jsp?no=<%=dto.getNo()%>"><%=dto.getTitle() %>	</a></td>
+			<td><%=dto.getName() %>		</td>
+			<td><%=dto.getWriteday() %>	</td>
+			<td align="right"><%=dto.getReadcount() %></td>
+		</tr>
+		<%} %>
 	</table>
 	<a href="insert.jsp">[글쓰기]</a>
 </body>
