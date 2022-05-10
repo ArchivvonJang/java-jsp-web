@@ -187,7 +187,7 @@ public class BoardDao {
 			
 			ps.setLong(1, no);
 			//반영된 레코드 수를 반환해준다.
-			ps.executeUpdate();
+			//ps.executeUpdate();
 			//조회수 증가가 제대로 되었을 때 true로 변경
 			if(ps.executeUpdate() > 0) result = true;
 

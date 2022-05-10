@@ -39,4 +39,36 @@
   	<url-pattern>/game.mvc</url-pattern>
   </servlet-mapping>
   
+  <!-- DispatcherServlet Model 2 Board -->
+   <servlet>
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>board.controller.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Ajax -->
+  <servlet>
+  	<servlet-name>iam</servlet-name>
+  	<servlet-class>servlet.Iam</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>iam</servlet-name>
+  	<url-pattern>/Iam</url-pattern>
+  </servlet-mapping>
+  
+    <!-- check id -->
+  <servlet>
+  	<servlet-name>check</servlet-name>
+  	<servlet-class>servlet.CheckID</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>check</servlet-name>
+  	<url-pattern>/CheckID</url-pattern>
+  </servlet-mapping>
 </web-app>

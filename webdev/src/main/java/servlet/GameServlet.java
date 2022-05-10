@@ -29,14 +29,25 @@ public class GameServlet extends HttpServlet {
 	}
 	
 
+//	private Object whoWinner(int you, int com) {
+//		if((you==1 && com==3) || (you==2 && com==1) || (you==3 && you == 2)) {
+//			return "당신의 승리입니다.";
+//		}else if(you == com) {
+//			return "무승부입니다";
+//		}else {
+//			return "컴퓨터의 승리입니다.";
+//		}
+//	}
+
+	//가위바위보 알고리즘
 	private Object whoWinner(int you, int com) {
-		if((you==1 && com==3) || (you==2 && com==1) || (you==3 && you == 2)) {
-			return "당신의 승리입니다.";
-		}else if(you == com) {
-			return "무승부입니다";
-		}else {
-			return "컴퓨터의 승리입니다.";
+	
+		switch((you - com + 3) % 3) {
+			case 0: return "무승부입니다.";
+			case 1: return "사용자가 이겼습니다.";
+			default: return "컴퓨터가 이겼습니다.";
 		}
+
 	}
 
 
@@ -50,15 +61,6 @@ public class GameServlet extends HttpServlet {
 		}
 	}
 	
-	public String result(int you, int com) {
-		
-		String str = "의 승리입니다.";
-		
-		if(you > com) return "당신" + str;
-		else if(you == com) return "무승부입니다";
-		else return "컴퓨터" + str;
-		
-	}
 
 
 }

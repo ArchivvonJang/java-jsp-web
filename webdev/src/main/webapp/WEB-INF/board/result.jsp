@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Result</title>
 </head>
 <body>
-<%
-	//response.sendRedirect("URI");
-	response.sendRedirect("BoardList.do");
-%>
+<script type="text/javascript">
+	alert('${msg}');
+	location.href = '${url}';
+</script>
 </body>
 </html>

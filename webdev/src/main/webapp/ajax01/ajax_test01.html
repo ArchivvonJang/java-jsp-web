@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax_test01</title>
+<script type="text/javascript">
+
+	const createXMLHttpRequest = function(){
+		let xhr = new XMLHttpRequest;
+		//alert('XMLHttpRequest 생성');
+		return xhr;
+	}
+	const load = function(url){
+		let xhr = createXMLHttpRequest();
+		
+		//console.log('xhr.readyState : ' + xhr.readyState);
+		
+		xhr.open('GET', url, true); //true : 비동기 방식으로 요청한다는 뜻!
+		//console.log('xhr.readyState : ' + xhr.readyState); // readyState = 1
+		
+		//callback function :특정한 상황에 알아서 동작하는 함수
+		xhr.onreadystatechange = function(){
+			//console.log('xhr.readyState : ' + xhr.readyState); // readyState = 1
+			//status = 4, readyState = 4
+			if(xhr.readyState == 4 ){
+				if(xhr.status == 200){
+					console.log('OK');
+					process(xhr);
+				}else{
+					console.log('Error - ' + xhr.status);//404, 500...
+				}
+			}
+		}
+		
+		xhr.send(null);
+	}
+	
+	const process = function(xhr){
+		document.getElementById('rcvData').innerHTML = xhr.responseText;
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="테스트1" onclick="load('msg.txt');"/>
+	<input type="button" value="테스트2" onclick="load('msg.jsp');"/>
+	<div id="rcvData"></div>
+
+</body>
+</html>
