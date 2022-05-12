@@ -179,9 +179,10 @@ public class MemberDao {
 			
 			if(rs.next()) {
 				userInfo = new MemberDto();
-				System.out.println("MemberDao getUser userInfo 확인 : " + userInfo);
 				userInfo.setId(rs.getString("id"));
 				userInfo.setName(rs.getString("name"));
+				System.out.println("MemberDao getUser userInfo 확인 : " + userInfo);
+				
 			}
 			
 		}catch(Exception e) {

@@ -72,3 +72,21 @@ from tbl_board b
 join tbl_member m 
 on b.id = m.id
 order by b.no desc ;
+
+delete from tbl_board where no = 9;
+
+-- paging
+
+select rownum, title from tbl_board;
+
+--페이징 처리
+SELECT B.*
+    FROM (SELECT rownum AS rnum, A.*
+          FROM (SELECT b.no, b.title, m.id, 
+                       case when to_char(b.regdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD') 
+                            then to_char(b.regdate, 'HH24:MI:SS')  
+                            else to_char(b.regdate, 'YYYY-MM-DD') end AS regdate, b.readcount, m.name 
+                FROM tbl_board b join tbl_member m
+                ON b.id = m.id  	
+                ORDER BY no DESC) A) B
+    WHERE 1<=rnum AND rnum<=10;

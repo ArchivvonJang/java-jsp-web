@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var shift_right = function(){
+		if(document.getElementById('t1').value == ''){
+			alert('더이상 옮길 값이 없습니다.');
+			return;
+		}
+		document.getElementById('t2').value = document.getElementById('t1').value;
+		document.getElementById('t1').value = '';
+	}
+	var shift_left = function(){
+		if(document.getElementById('t2').value == ''){
+			alert('더이상 옮길 값이 없습니다.');
+			return;
+		}
+		document.getElementById('t1').value = document.getElementById('t2').value;
+		document.getElementById('t2').value ='';
+	}
+</script>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>
+			<textarea id="t1" rows="5" cols="40">안녕하세요.</textarea>
+		</td>
+		<td>
+			<input type="button" value="▶" onclick="shift_right();" /> <br/><br/>
+			<input type="button" value="◀" onclick="shift_left();" /> 
+		</td>
+		<td>
+			<textarea id="t2" rows="5" cols="40"></textarea>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

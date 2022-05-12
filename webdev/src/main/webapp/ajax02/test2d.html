@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		//alert($('#t1').val());
+		
+		$('#btnShiftRight').click(function(){
+			
+			if($('#t1').val() =='' ){
+				alert('값 X');
+				return;
+			}
+			
+			//t2에 t1의 값을 저장
+			$('#t2').val(
+				$('#t1').val()		
+			);
+			//공백처리
+			$('#t1').val('');		
+		});
+		
+		$('#btnShiftLeft').click(function(){
+			
+			if($('#t2').val() =='' ) {
+				alert('값 X'); 
+				return;
+			}
+			
+			//t1에 t2의 값을 저장
+			$('#t1').val(
+				$('#t2').val()		
+			);
+			//공백처리
+			$('#t1').val('');		
+		});
+	});
+
+
+</script>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>
+			<textarea id="t1" rows="5" cols="40">안녕하세요.</textarea>
+		</td>
+		<td>
+			<input type="button" value="▶"  id="btnShiftRight" /> <br/><br/>
+			<input type="button" value="◀"  id="btnShiftLeft"/> 
+		</td>
+		<td>
+			<textarea id="t2" rows="5" cols="40"></textarea>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>제이쿼리</title>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	//alert('jquery' + jquery.fn.jquery);
+	$(document).ready(function(){
+		console.log('document ready!');
+		$('td').click(function(){
+			$(this).hide();
+		});
+	}); //현재 문서가 준비되면 다음 함수를 수행해라
+</script>
+</head>
+<body >
+
+<table>
+	<tr><!-- this는 td 자기 자신 -->
+		<td>1. 클릭하면 사라집니다.</td>
+	</tr>
+	<tr>
+		<td>2. 클릭하면 사라집니다.</td>
+	</tr>
+	<tr>
+		<td>3. 클릭하면 사라집니다.</td>
+	</tr>
+</table>
+
+</body>
+</html>

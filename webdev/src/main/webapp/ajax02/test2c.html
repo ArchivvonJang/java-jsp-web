@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	var init = function (){
+		var t1 = document.getElementById('t1');
+		var t2 = document.getElementById('t2');
+		var shiftRight = document.getElementById('btnShiftRight');
+		var shiftLeft = document.getElementById('btnShiftLeft');
+		
+		shiftRight.onclick = function(){
+			
+			if(t1.value == '') alert('값이 없습니다.'); return;
+			
+			t2.value = t1.value;
+			t1.value = '';
+		}
+		
+		shiftLeft.onclick = function(){
+			
+			if(t2.value == '') alert('값이 없습니다.'); return;
+			
+			t1.value = t2.value;
+			t2.value = '';
+		}
+	}
+
+
+
+</script>
+</head>
+<body onload="init();">
+
+<table>
+	<tr>
+		<td>
+			<textarea id="t1" rows="5" cols="40">안녕하세요.</textarea>
+		</td>
+		<td>
+			<input type="button" value="▶"  id="btnShiftRight" /> <br/><br/>
+			<input type="button" value="◀"  id="btnShiftLeft"/> 
+		</td>
+		<td>
+			<textarea id="t2" rows="5" cols="40"></textarea>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
