@@ -2,47 +2,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ajax_test03 servlet</title>
+<title>ajax_test03 제이쿼리와 서블릿</title>
+<script type="text/javascript" src="jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
-	const createXMLHttpRequest = function(){
-		let xhr = new XMLHttpRequest;
-		return xhr;
-	}
-	const load = function(url){
-		let xhr = createXMLHttpRequest();
-		//url 요청할 때 같이 넘길 값
-		let name = document.getElementById('name').value;
-		let age = document.getElementById('age').value;
-		
-		//요청!		 						true : 비동기 방식으로 요청한다는 뜻!
-		xhr.open('GET', url+'?name='+name+'&age='+age, true); 
-		
-		//callback function :특정한 상황에 알아서 동작하는 함수
-		xhr.onreadystatechange = function(){
-			//status = 4, readyState = 4
-			if(xhr.readyState == 4 ){
-				if(xhr.status == 200){
-					console.log('OK');
-					process(xhr);
-				}else{
-					console.log('Error - ' + xhr.status);//404, 500...
+	$(document).ready(function(){
+		$('#say').click(function(){
+			//alert('say 클릭');
+			var name = $('#name').val();
+			var age = $('#age').val();
+			$.ajax({
+				type: 'POST',
+				data: {'name' : name, 
+						'age' : age},
+				url: '../Iam',
+				success: function(result){
+					$('#rcvData').html('<h1>'+result+'</h1>');
 				}
-			}
-		}
-		
-		xhr.send(null);
-	}
-	
-	const process = function(xhr){
-		document.getElementById('rcvData').innerHTML = '<h1>' + xhr.responseText + '</h1>';
-	}
+				
+			});
+		});
+	});
 </script>
 </head>
 <body>
 	이름  &nbsp; <input type="text" id="name"/> &nbsp;&nbsp;
 	나이  &nbsp; <input type="text" id="age"/>
-	<input type="button" value="say" onclick="load('../Iam');"/>
+	<input type="button" value="say" id="say"/>
 	<hr/>
 	<div id="rcvData"></div>
 	<hr/>
