@@ -8,13 +8,13 @@
 
 </br>
 
-|Day| Title |Description|
-|---|---|---|
-|Day 1 | | Java Basic|
-|Day 2||Class, Inheritance, Method..|
-|Day 3||  Stream,Java Web|
-|Day 4||  |
-|Day 5||  |
-|Day 6||  |
-|Day 7||  |
+|Day| Description|
+|---|---|
+|Day 1 |  Java Basic|
+|Day 2|Class, Inheritance, Method..|
+|Day 3|  Stream,Collection, Java Web, Servlet|
+|Day 4|  JSP, JDBC, Singleton Pattern|
+|Day 5| Model 2, Ajax |
+|Day 6| Board with Model 2 |
+|Day 7| Session/ Cookie, Pagination |
 
